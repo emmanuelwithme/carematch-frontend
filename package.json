@@ -9,8 +9,10 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "expo lint",
-    "predeploy": "npx expo export --platform web",
-    "deploy": "gh-pages -d dist"
+    "predeploy": "expo export --platform web --clear && node ./scripts/copy-fonts.js && npx shx touch dist/.nojekyll",
+    "deploy": "gh-pages -d dist --no-history",
+    "postdeploy": "echo ✅ 網站已成功部署到 GitHub Pages",
+    "test:web": "expo export --platform web --clear && node ./scripts/copy-fonts.js && npx shx touch dist/.nojekyll && serve dist"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
@@ -47,6 +49,7 @@
     "eslint": "^9.25.0",
     "eslint-config-expo": "~9.2.0",
     "gh-pages": "^6.3.0",
+    "serve": "^14.2.4",
     "typescript": "~5.8.3"
   },
   "private": true
