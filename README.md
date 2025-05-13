@@ -3,18 +3,28 @@
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
 ## Get started
-
+0. 設定環境變數
+   在根目錄下創建`.env`，然後包含:
+   ```
+   API_BASE_URL=你自己設定的flask API server ip:port或只有ip或URL
+   ```
+   > 舉例: `API_BASE_URL=https:blablabla.azurewebsites.net`
 1. Install dependencies
 
    ```bash
    npm install
    ```
 
-2. Start the app
-
+2. Start the app(測試用)
+   這個server可以同時產生動態網頁、android及ios上可以用`Expo Go`這個app掃描qrcode執行在手機上。
    ```bash
    npx expo start
    ```
+   如果有問題時，可以加上`--clear`參數，清除Metro Bundler快取、Babel快取、TypeScript編譯快取、expo-router的route快取
+3. 編譯成apk(正式用)
+   當測試都沒有問題時，可以用`eas build --platform android --profile preview`(可加上--clear-cache，強制清除雲端快取、依賴快取)在雲端上自動編譯成apk，然後可以下載。
+4. 編譯成靜態網站(正式用)
+   執行`npm run deploy`，背後會同時執行`package.json`的predeploy和deploy設定好的指令，也就是先編譯靜態網站到`/dist`然後再上傳`/dist`到github gh-pages分支。
 
 In the output, you'll find options to open the app in a
 

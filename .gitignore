@@ -37,3 +37,9 @@ yarn-error.*
 *.tsbuildinfo
 
 app-example
+
+# 安卓APP的簽章憑證
+*.keystore
+
+# 環境變量
+.env
